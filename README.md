@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📦 TTA-Bench-tools
 
 > A comprehensive benchmark for text-to-audio (TTA) generation evaluation.
@@ -49,5 +50,6 @@ We would like to thank the following projects, datasets, and contributors that m
 
 - [Audiobox-aesthetic](https://github.com/facebookresearch/audiobox-aesthetics)
 - [CLAP](https://github.com/microsoft/CLAP)
+
 
 
