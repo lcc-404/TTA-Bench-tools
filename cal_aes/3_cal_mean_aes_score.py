@@ -12,28 +12,24 @@ outfile = "./aes_results/result.txt"
 f = open(outfile,'w')
 for sys_name in SYS_NANE:
     for eval_dim in EVAL_DIM:
-        # 指定系统、指定维度的所有wav文件的AES结果路径
         temp = sys_name + '_' + eval_dim
         result_jsonl = f'/home/liucheng/project/tta-benchmark/audiobox-aesthetics/aes_results/{temp}.jsonl'
 
-        # 初始化变量
         total_ce = 0
         total_cu = 0
         total_pc = 0
         total_pq = 0
         count = 0
 
-        # 读取文件并计算总和
         with open(result_jsonl, 'r') as file:
             for line in file:
-                data = json.loads(line)  # 解析每一行的 JSON 数据
+                data = json.loads(line)
                 total_ce += data['CE']
                 total_cu += data['CU']
                 total_pc += data['PC']
                 total_pq += data['PQ']
                 count += 1
 
-        # 计算平均值
         if count > 0:
             avg_ce = total_ce / count
             avg_cu = total_cu / count
@@ -42,7 +38,7 @@ for sys_name in SYS_NANE:
         else:
             avg_ce = avg_cu = avg_pc = avg_pq = 0
 
-        # 输出结果
+    
         print(f"====={temp}=====")
         print(f"count:{count}")
         print(f"Average CE: {avg_ce}")

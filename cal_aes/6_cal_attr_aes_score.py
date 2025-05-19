@@ -1,5 +1,5 @@
 import json
-# prompt文件路径
+# prompt path
 ACC_PROMPT_PATH = "/home/liucheng/project/tta-benchmark/prompt/acc_prompt.json"
 GENERAL_PROMPT_PATH = "/home/liucheng/project/tta-benchmark/prompt/generalization_prompt.json"
 ROBUSTNESS_PROMPT_PATH = "/home/liucheng/project/tta-benchmark/prompt/robustness_prompt.json"
@@ -11,7 +11,7 @@ def load_prompts(prompt_path: str, target_field: str) -> dict:
         prompts = json.load(f)
     return {prompt_data['id']: prompt_data[target_field] for prompt_data in prompts}
 
-# 存储每个prompt id到其所属维度的细分属性值的映射，类似"prompt_0001":"2"或"prompt_1801":"uppercase"
+# key:prompt_id, value:attribute of dimension, e.g. "prompt_0001":"2" / "prompt_1801":"uppercase"
 acc_event_count_map = load_prompts(ACC_PROMPT_PATH, "event_count")
 acc_event_relation_map = load_prompts(ACC_PROMPT_PATH, "event_relation")
 general_event_count_map = load_prompts(GENERAL_PROMPT_PATH, "event_count")
@@ -19,7 +19,10 @@ robustness_type_map = load_prompts(ROBUSTNESS_PROMPT_PATH, "perturbation_type")
 fairness_type_map = load_prompts(FAIRNESS_PROMPT_PATH, "notes")
 
 def get_prompt_attr(prompt_id: str) -> str:
-    """根据prompt编号获取对应的prompt文本"""
+    """
+    input:prompt_id
+    output:prompt_text
+    """
     if 1 <= int(prompt_id) <= 1500:
         return acc_event_count_map[f"prompt_{prompt_id}"], acc_event_relation_map[f"prompt_{prompt_id}"]
     elif 1501 <= int(prompt_id) <= 1800:
